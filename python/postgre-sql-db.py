@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine # движок для подключения
 from sqlalchemy.orm import DeclarativeBase # базовая модель
 from sqlalchemy.orm import sessionmaker # сессия
-from sqlalchemy import  Column, Integer, String, DateTime, CHAR
+from sqlalchemy import  Column, Integer, String, DateTime, CHAR, Date
 
 # подключение движка
 engine = create_engine("postgresql://postgre:qwerty1234@localhost/mydb")
@@ -15,7 +15,7 @@ class Patient(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     fio = name = Column(String)
-    birthdate = Column(DateTime)
+    birthdate = Column(Date)
     gender = Column(CHAR) # м/ж
     phone = Column(String)
     email = Column(String)
@@ -42,6 +42,17 @@ class Service(Base):
     price = Column(Integer)
     description = Column(String)
     duration = Column(Integer)
+
+# Записи на приём: id, пациент, врач, дата и время, услуга, статус (запланировано/выполнено/отменено).
+class Appointment(Base):
+    __tablename__ = "appointments"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    # пациент из patients
+    # врач из doctors
+    datetime = Column(DateTime)
+    # услуга из appointments
+    
 
 # создаем таблицы
 Base.metadata.create_all(bind=engine)
