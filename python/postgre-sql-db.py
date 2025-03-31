@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker # сессия
 from sqlalchemy import  Column, Integer, String, DateTime, CHAR, Date, Boolean
 
 # подключение движка
-engine = create_engine("postgresql://postgre:qwerty1234@localhost/mydb")
+# engine = create_engine("postgresql://postgre:qwerty1234@localhost/mydb")
 
 # создание класса с базовой моделью
 class Base(DeclarativeBase): pass
