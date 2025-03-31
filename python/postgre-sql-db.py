@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine # движок для подключения
 from sqlalchemy.orm import DeclarativeBase # базовая модель
 from sqlalchemy.orm import sessionmaker # сессия
-from sqlalchemy import  Column, Integer, String, DateTime, CHAR, Date
+from sqlalchemy import  Column, Integer, String, DateTime, CHAR, Date, Boolean
 
 # подключение движка
 engine = create_engine("postgresql://postgre:qwerty1234@localhost/mydb")
@@ -16,7 +16,7 @@ class Patient(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     fio = name = Column(String)
     birthdate = Column(Date)
-    gender = Column(CHAR) # м/ж
+    gender = Column(String) # бывший Column(CHAR) 
     phone = Column(String)
     email = Column(String)
     adress = Column(String)
@@ -27,7 +27,7 @@ class Doctor(Base):
     __tablename__ = "doctors"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    fio = name = Column(String)
+    fio = Column(String)
     spec = Column(String)
     cab = Column(Integer)
     phone = Column(String)
@@ -48,11 +48,31 @@ class Appointment(Base):
     __tablename__ = "appointments"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    # пациент из patients
-    # врач из doctors
+    # [пациент из patients]
+    # [врач из doctors]
     datetime = Column(DateTime)
-    # услуга из appointments
-    
+    # [услуга из services]
+    status = Column(String)
+
+# Диагнозы: id, приём, диагноз, комментарии врача.
+class Diagnose(Base):
+    __tablename__ = "diagnoses"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    # [id от appointments]
+    diagnose = Column(String)
+    comment = Column(String)
+
+# Расписание врачей: id, врач, день недели, рабочее время (с/до), доступность.
+class Timetable(Base):
+    __tablename__ = "timetables"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    # [врач из doctors]
+    day = Column(String)
+    worktime = Column(String)
+    availability = Column(Boolean)
+
 
 # создаем таблицы
 Base.metadata.create_all(bind=engine)
