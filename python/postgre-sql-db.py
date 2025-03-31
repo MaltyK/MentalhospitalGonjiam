@@ -16,7 +16,7 @@ class Patient(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     fio = name = Column(String)
     birthdate = Column(Date)
-    gender = Column(String) # бывший Column(CHAR) 
+    gender = Column(String) # бывший Column(CHAR)
     phone = Column(String)
     email = Column(String)
     adress = Column(String)
