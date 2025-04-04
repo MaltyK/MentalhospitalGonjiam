@@ -1,0 +1,129 @@
+body {
+    background: linear-gradient(to right, #364f47, #4f927c);
+    margin: 0;
+    
+}
+
+.LOGO {
+    background: linear-gradient(to right, #455B5F, #90BCC5);
+    display: flex;
+    justify-content: space-between; /* Размещаем элементы по краям */
+    align-items: center; /* Центрируем элементы по вертикали */
+    height: 80px;
+    padding: 0 20px; /* Добавлено для отступов */
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.LOGO_CONTENT {
+    display: flex; /* Используем flex для логотипа и названия */
+    align-items: center; /* Центрируем элементы по вертикали */
+}
+
+.IMAGE_LOGO {
+    margin-right: 10px; /* Отступ справа от логотипа */
+    width: 70px; 
+    height: 70px;
+    max-width: 100%;
+    border-radius: 100%;
+}
+
+.LOGO_TITLE {
+    font-size: 34px; /* Размер шрифта для названия */
+    color: white; /* Цвет текста */
+    font-family: Georgia, serif;
+}
+
+.BUTTONS {
+    display: flex; /* Используем flex для кнопок */
+    gap: 10px; /* Промежуток между кнопками */
+}
+
+.BOTTON_LOGO {
+    background: linear-gradient(to right, #455B5F, #5a767b);
+    background-size: cover; 
+    width: 150px; 
+    height: 50px;
+    max-width: 100%;
+    border-radius: 5%;
+    color: white; 
+    text-align: center; 
+    line-height: 50px; 
+    text-decoration: none;
+    font-size: 20px; 
+    cursor: pointer; 
+    border: 2px solid rgb(0, 0, 0);
+    display: inline-block;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.BOTTON_LOGO:hover {
+    opacity: 0.6;
+}
+
+/* Стили для приветственного сообщения */
+.WELCOME_MESSAGE {
+    background-color: #d0d9ff; /* Белый фон для контрастности */
+    color: #000000; /* Цвет текста */
+    padding: 20px; /* Отступы вокруг текста */
+    margin: 20px; /* Отступы от других элементов */
+    border-radius: 5px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0 , 0, 0, 0.1); /* Тень для эффекта поднятия */
+    border: 2px solid rgb(0, 0, 0);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.WELCOME_MESSAGE h1 {
+    font-size: 28px; /* Размер заголовка */
+    margin-bottom: 10px; /* Отступ снизу заголовка */
+    margin-left: 50px;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+}
+
+.WELCOME_MESSAGE p {
+    font-size: 18px; /* Размер текста */
+    line-height: 1.6; /* Межстрочный интервал */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 990px) {
+    .LOGO {
+        height: auto; /* Автоматическая высота */
+        padding: 10px; /* Уменьшение отступов */
+    }
+
+    .IMAGE_LOGO {
+        margin: 10px 0; /* Уменьшение отступов */
+        width: 50px; /* Уменьшение размера логотипа */
+        height: 50px; /* Уменьшение размера логотипа */
+    }
+
+    .LOGO_TITLE {
+        font-size: 20px; /* Уменьшение размера шрифта для мобильных устройств */
+    }
+
+    .BUTTONS {
+        display: grid; /* Используем Grid */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .BOTTON_LOGO {
+        width: 100%; /* Кнопка занимает всю ширину */
+        height: 40px; /* Уменьшение высоты кнопки */
+        font-size: 25px; /* Уменьшение размера шрифта */
+        line-height: 40px; /* Центрирование текста */
+        margin: 10px 0; /* Уменьшение отступов */
+    }
+
+    .WELCOME_MESSAGE {
+        padding: 15px; /* Уменьшение отступов для мобильных устройств */
+    }
+
+    .WELCOME_MESSAGE h1 {
+        font-size: 24px; /* Уменьшение размера заголовка */
+    }
+
+    .WELCOME_MESSAGE p {
+        font-size: 16px; /* Уменьшение размера текста */
+    }
+}
