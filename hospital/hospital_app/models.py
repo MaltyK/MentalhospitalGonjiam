@@ -48,3 +48,12 @@ class Diagnose(models.Model):
 
     def __str__(self):
         return f"Diagnose for {self.appointment}"
+    
+class Payment(models.Model):
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='payments')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)  # Сумма платежа
+    payment_date = models.DateTimeField(auto_now_add=True)  # Дата оплаты
+    payment_method = models.CharField(max_length=50)  # Способ оплаты
+
+    def __str__(self):
+        return f"Payment of {self.amount} for {self.appointment} on {self.payment_date}"
