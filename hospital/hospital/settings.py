@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tlt)1ck^6+h_%#lxg#7-g#bk0d62$zzrxelq6k9=(#f2v__#bu'
+SECRET_KEY = 'django-insecure-)q-a%o30t^xjuegx$y2d5!k2y)yvyds)647b*o!h8eum$3)4bt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'hospital_app',
-    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -79,9 +78,9 @@ WSGI_APPLICATION = 'hospital.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'postgre',
-        'PASSWORD': 'qwerty1234',
+        'NAME': 'hospital',
+        'USER': 'adminuser',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
     }
