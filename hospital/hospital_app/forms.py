@@ -61,7 +61,7 @@ class DiagnoseForm(forms.ModelForm):
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = models.Payment
-        fields = ['appointment', 'amount', 'payment_date', 'payment_method']
+        fields = ['appointment', 'amount', 'payment_method']
         labels = {
             "appointment": "Приём",
             "amount": "Сумма",
