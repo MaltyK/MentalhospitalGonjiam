@@ -4,6 +4,10 @@ from . import models
 from . import forms
 
 # Create your views here.
+
+def home(request):
+    return render(request, 'hospital_app/home.html')
+
 # Patient
 def patient_list(request):
     patients = models.Patient.objects.all()
