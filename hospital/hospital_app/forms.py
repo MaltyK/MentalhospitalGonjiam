@@ -1,5 +1,9 @@
 from django import forms
 from . import models
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+# Create your forms here.
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -68,3 +72,12 @@ class PaymentForm(forms.ModelForm):
             "payment_date": "Дата оплаты",
             "payment_method": "Метод оплаты",
         }
+
+# Registration form.
+
+class RegistrForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    
+    class Meta:
+        model = User
+        fields = ["username", "email", "password1", "password2"]
