@@ -1,9 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 from . import models
 from . import forms
 
 # Create your views here.
+
+def home(request):
+    return render(request, 'hospital_app/home.html')
+
+def registr(request):
+    return render(request, 'hospital_app/registr.html')
+
 # Patient
 def patient_list(request):
     patients = models.Patient.objects.all()
@@ -219,3 +227,15 @@ def delete_payment(request, pk):
         payment.delete()
         return redirect('payment_list')
     return render(request, 'payments/delete_payment.html', {'payment': payment})
+
+# Registration view.
+def registr(request):
+    if request.method == "POST":
+        form = forms.RegistrForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = forms.RegistrForm()
+    return render(request, 'hospital_app/registr.html', {'form': form})
