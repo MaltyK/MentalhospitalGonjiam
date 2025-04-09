@@ -15,7 +15,6 @@ body {
 }
 
 .LOGO_CONTENT {
-    background-image: url(/hospital/static/img/PLUS.png);
     display: flex; /* Используем flex для логотипа и названия */
     align-items: center; /* Центрируем элементы по вертикали */
 }
