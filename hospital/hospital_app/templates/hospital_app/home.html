@@ -37,7 +37,7 @@
             <a href="#" class="BOTTON_LOGO">Врачи</a>
             <a href="#" class="BOTTON_LOGO">О нас</a> <!-- Добавлена кнопка "О нас" -->
             {% if user.is_authenticated %}
-            <form id="logout" action="{% url 'logout' %}" method="post">
+            <form id="logout" action="{% url 'logout' %}?next={{ '/' }}" method="post">
                 {% csrf_token %}
                 <button class="BOTTON_LOGO" onclick="confirmAction(event)" type="submit">Выйти</button>
             </form>
