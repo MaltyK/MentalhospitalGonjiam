@@ -19,11 +19,13 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from hospital_app.views import registr
 
+class CustomLogoutView(auth_views.LogoutView):
+    redirect_field_name = 'next'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='hospital_app/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
-
     path('accounts/register/', registr, name='registr'),
     path('', include('hospital_app.urls')),
 ]
