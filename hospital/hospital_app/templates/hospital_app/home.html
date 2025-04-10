@@ -20,8 +20,15 @@
             <a href="#" class="BOTTON_LOGO">Главная</a>
             <a href="#" class="BOTTON_LOGO">Запись</a>
             <a href="#" class="BOTTON_LOGO">Врачи</a>
-            <a href="#" class="BOTTON_LOGO">О нас</a>
-            <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a>  <!-- Добавлена кнопка "О нас" -->
+            <a href="#" class="BOTTON_LOGO">О нас</a> <!-- Добавлена кнопка "О нас" -->
+            {% if user.is_authenticated %}
+            <form class="BOTTON_LOGO" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button class="BOTTON_LOGO" type="submit">Выйти</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a>
+            {% endif %}
         </div>
     </div>
 
