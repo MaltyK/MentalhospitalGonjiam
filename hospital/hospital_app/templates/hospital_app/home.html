@@ -8,6 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{% static 'js/PAGE_1.3.js' %}" defer></script>
     <title>PAGE_WEBSITE_1</title>
+    <script>
+        function confirmAction(event) {
+            // Отменяем стандартное действие ссылки
+            event.preventDefault();
+
+            // Показываем всплывающее окно с подтверждением
+            const userConfirmed = confirm("Вы уверены, что хотите выйти из аккаунта?");
+
+            if (userConfirmed) {
+                // Находим форму и отправляем её
+                const form = document.getElementById('logout');
+                form.submit(); // Отправка формы
+        }
+    }
+    </script>
 </head>
 <body>
     <div class="LOGO">
@@ -22,9 +37,9 @@
             <a href="#" class="BOTTON_LOGO">Врачи</a>
             <a href="#" class="BOTTON_LOGO">О нас</a> <!-- Добавлена кнопка "О нас" -->
             {% if user.is_authenticated %}
-            <form class="BOTTON_LOGO" action="{% url 'logout' %}" method="post">
+            <form id="logout" action="{% url 'logout' %}?next={{ '/' }}" method="post">
                 {% csrf_token %}
-                <button class="BOTTON_LOGO" type="submit">Выйти</button>
+                <button class="BOTTON_LOGO" onclick="confirmAction(event)" type="submit">Выйти</button>
             </form>
             {% else %}
             <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a>
