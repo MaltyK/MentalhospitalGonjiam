@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'styles/css/index.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой профиль</title>
+    <script>
+        function confirmAction(event) {
+            // Отменяем стандартное действие ссылки
+            event.preventDefault();
+
+            // Показываем всплывающее окно с подтверждением
+            const userConfirmed = confirm("Вы уверены, что хотите выйти из аккаунта?");
+
+            if (userConfirmed) {
+                // Находим форму и отправляем её
+                const form = document.getElementById('logout');
+                form.submit(); // Отправка формы
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="LOGO">
+        <div class="LOGO_CONTENT">
+            <img src="{% static 'img/PLUS.png' %}" alt="Логотип" class="IMAGE_LOGO">
+            <span class="LOGO_TITLE">ДОКТОР+</span>
+        </div>
+        <div class="BUTTONS">
+            <a href="{% url 'home' %}" class="BOTTON_LOGO">Главная</a>
+            <a href="{% url 'appointment' %}" class="BOTTON_LOGO">Запись</a>
+            <a href="{% url 'doctors' %}" class="BOTTON_LOGO">Врачи</a>
+            {% if user.is_authenticated %}
+            <form id="logout" action="{% url 'logout' %}?next={{ '/' }}" method="post">
+                {% csrf_token %}
+                <button class="BOTTON_LOGO" onclick="confirmAction(event)" type="submit">Выйти</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="WELCOME_MESSAGE">
+        <h1>Добро пожаловать {{ user.username }}.</h1>
+        <h2>Записи на прием:</h2>
+        <ul>
+            {% for appointment in appointments %}
+                <li>
+                    Врач: {{ appointment.doctor.name }}, 
+                    Время: {{ appointment.schedule.time_slot }}, 
+                    Диагноз: {{ appointment.diagnosis }}
+                </li>
+            {% empty %}
+                <li>У вас нет записей на прием.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

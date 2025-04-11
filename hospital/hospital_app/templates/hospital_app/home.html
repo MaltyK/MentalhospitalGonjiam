@@ -7,22 +7,7 @@
     <link href="{% static 'styles/css/index.css' %}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{% static 'js/PAGE_1.3.js' %}" defer></script>
-    <title>PAGE_WEBSITE_1</title>
-    <script>
-        function confirmAction(event) {
-            // Отменяем стандартное действие ссылки
-            event.preventDefault();
-
-            // Показываем всплывающее окно с подтверждением
-            const userConfirmed = confirm("Вы уверены, что хотите выйти из аккаунта?");
-
-            if (userConfirmed) {
-                // Находим форму и отправляем её
-                const form = document.getElementById('logout');
-                form.submit(); // Отправка формы
-        }
-    }
-    </script>
+    <title>Главная</title>
 </head>
 <body>
     <div class="LOGO">
@@ -32,15 +17,11 @@
         </div>
         
         <div class="BUTTONS"> <!-- Контейнер для кнопок -->
-            <a href="#" class="BOTTON_LOGO">Главная</a>
-            <a href="#" class="BOTTON_LOGO">Запись</a>
-            <a href="#" class="BOTTON_LOGO">Врачи</a>
+            <a href="{% url 'appointment' %}" class="BOTTON_LOGO">Запись</a>
+            <a href="{% url 'doctors' %}" class="BOTTON_LOGO">Врачи</a>
             <a href="#" class="BOTTON_LOGO">О нас</a> <!-- Добавлена кнопка "О нас" -->
             {% if user.is_authenticated %}
-            <form id="logout" action="{% url 'logout' %}?next={{ '/' }}" method="post">
-                {% csrf_token %}
-                <button class="BOTTON_LOGO" onclick="confirmAction(event)" type="submit">Выйти</button>
-            </form>
+            <a href="{% url 'profile' %}" class="BOTTON_LOGO">Мой профиль</a>
             {% else %}
             <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a>
             {% endif %}
