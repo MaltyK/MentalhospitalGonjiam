@@ -32,8 +32,8 @@
         <div class="BUTTONS">
             <a href="{% url 'home' %}" class="BOTTON_LOGO">Главная</a>
             <a href="{% url 'appointment' %}" class="BOTTON_LOGO">Запись</a>
-            <a href="{% url 'profile' %}" class="BOTTON_LOGO">Мой профиль</a>
             {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="BOTTON_LOGO">Мой профиль</a>
             <form id="logout" action="{% url 'logout' %}?next={{ '/' }}" method="post">
                 {% csrf_token %}
                 <button class="BOTTON_LOGO" onclick="confirmAction(event)" type="submit">Выйти</button>
