@@ -1,19 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'styles/css/index.css' %}" rel="stylesheet">
     <title>Вход в аккаунт</title>
 </head>
 <body>
+    <div class="WELCOME_MESSAGE">
     {% block content %}
     <h2>Войти</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Войти</button>
+        <button type="submit" class="BOTTON_LOGO">Войти</button>
     </form>
-    <p>Нет аккаунта? <a href="{% url 'registr' %}">Зарегистрироваться</a>.</p>
-{% endblock %}
+    <a href="{% url 'home' %}" class="BOTTON_LOGO">Главная</a>
+    <p>Нет аккаунта? <a href="{% url 'registr' %} " class="BOTTON_LOGO">Зарегистр.</a></p>
+    {% endblock %}
+    </div>
 </body>
 </html>
