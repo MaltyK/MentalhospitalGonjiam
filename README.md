@@ -4,7 +4,7 @@
 
 1. Клонируйте репозиторий:
     ```
-    git clone <URL>
+    git clone https://github.com/MaltyK/MentalhospitalGonjiam
     ```
 2. Создайте виртуальное окружение:
     ```
