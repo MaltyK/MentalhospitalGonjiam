@@ -12,6 +12,9 @@ def home(request):
 def registr(request):
     return render(request, 'hospital_app/registr.html')
 
+def profile(request):
+    return render(request, 'hospital_app/profile.html')
+
 # Patient
 def patient_list(request):
     patients = models.Patient.objects.all()
@@ -51,7 +54,7 @@ def delete_patient(request, pk):
 # Doctor
 def doctor_list(request):
     doctors = models.Doctor.objects.all()
-    return render(request, 'doctors/doctor_list.html', {'doctors': doctors})
+    return render(request, 'hospital_app/doctors/doctor_list.html', {'doctors': doctors})
 
 @login_required
 def add_doctor(request):
@@ -134,7 +137,7 @@ def add_appointment(request):
             return redirect('appointment_list')
     else:
         form = forms.AppointmentForm()
-    return render(request, 'appointments/add_appointment.html', {'form': form})
+    return render(request, 'hospital_app/appointments/add_appointment.html', {'form': form})
 
 @login_required
 def edit_appointment(request, pk):

@@ -1,19 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'styles/css/index.css' %}" rel="stylesheet">
     <title>Регистрация</title>
 </head>
 <body>
+    <div class="WELCOME_MESSAGE">
     {% block content %}
     <h2>Регистрация</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+        <button type="submit" class="BOTTON_LOGO">Зарегистр.</button>
     </form>
-    <p>Уже зарегистрированы? <a href="{% url 'login' %}">Войти</a>.</p>
-{% endblock %}
+    <a href="{% url 'home' %}" class="BOTTON_LOGO">Главная</a>
+    <p>Уже зарегистрированы? <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a></p>
+    {% endblock %}
+    </div>
 </body>
 </html>

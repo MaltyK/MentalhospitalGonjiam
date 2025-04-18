@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'styles/css/index.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список врачей</title>
+    <script>
+        function confirmAction(event) {
+            // Отменяем стандартное действие ссылки
+            event.preventDefault();
+
+            // Показываем всплывающее окно с подтверждением
+            const userConfirmed = confirm("Вы уверены, что хотите выйти из аккаунта?");
+
+            if (userConfirmed) {
+                // Находим форму и отправляем её
+                const form = document.getElementById('logout');
+                form.submit(); // Отправка формы
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="LOGO">
+        <div class="LOGO_CONTENT">
+            <img src="{% static 'img/PLUS.png' %}" alt="Логотип" class="IMAGE_LOGO">
+            <span class="LOGO_TITLE">ДОКТОР+</span>
+        </div>
+        <div class="BUTTONS">
+            <a href="{% url 'home' %}" class="BOTTON_LOGO">Главная</a>
+            <a href="{% url 'appointment' %}" class="BOTTON_LOGO">Запись</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="BOTTON_LOGO">Мой профиль</a>
+            <form id="logout" action="{% url 'logout' %}?next={{ '/' }}" method="post">
+                {% csrf_token %}
+                <button class="BOTTON_LOGO" onclick="confirmAction(event)" type="submit">Выйти</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}" class="BOTTON_LOGO">Войти</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="WELCOME_MESSAGE">
+        <h1>Список врачей</h1>
+        <ul>
+            {% for doctor in doctors %}
+                <li>
+                    <strong>{{ doctor.fio }}</strong> - {{ doctor.spec }}<br>
+                    Кабинет: {{ doctor.cab }}<br>
+                    Телефон: {{ doctor.phone }}<br>
+                    Email: {{ doctor.email }}
+                </li>
+            {% empty %}
+                <li>Врачи не найдены.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
